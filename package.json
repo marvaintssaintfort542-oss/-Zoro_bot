@@ -2,9 +2,9 @@
   "name": "zoro-bot",
   "version": "1.0.0",
   "description": "WhatsApp Bot",
-  "main": "index.js",
+  "main": "BigDaddy 2.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node \"BigDaddy 2.js\""
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.5",
