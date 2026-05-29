@@ -4,7 +4,7 @@
   "description": "WhatsApp Bot",
   "main": "BigDaddy 2.js",
   "scripts": {
-    "start": "node \"BigDaddy 2.js\""
+    "start": "node BigDaddy\\ 2.js"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.5",
