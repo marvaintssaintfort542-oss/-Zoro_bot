@@ -1,6 +1,7 @@
 const { default: makeWASocket, useMultiFileAuthState, DisconnectReason } = require('@whiskeysockets/baileys');
 const pino = require('pino');
 const { Boom } = require('@hapi/boom');
+const { gererCommandes } = require('./commandes');
 
 async function startZoroBot() {
     // Gère l'authentification et crée un dossier 'session' pour rester connecté
@@ -58,10 +59,14 @@ async function startZoroBot() {
 
                 case 'aide':
                 case 'menu':
-                    const texteMenu = `⚔️ *BOT ZORO - COMMANDES* ⚔️\n\n` +
-                                      `.ping - Vérifier si le bot répond\n` +
-                                      `.menu - Afficher la liste des commandes\n` +
-                                      `.statut - Voir si le bot tourne bien`;
+                    const texteMenu = `⚔️ *BOT ZORO - MENU* ⚔️\n\n` +
+                                      `*Modération (Admins uniquement) :*\n` +
+                                      `.kick - Exclure un membre (mentionne ou réponds)\n` +
+                                      `.kickall - Purger tout le groupe\n` +
+                                      `.tagall / .tag - Mentionner tout le monde\n\n` +
+                                      `*Général :*\n` +
+                                      `.ping - Tester le bot\n` +
+                                      `.statut - Voir le statut système`;
                     await sock.sendMessage(from, { text: texteMenu }, { quoted: msg });
                     break;
 
@@ -70,6 +75,8 @@ async function startZoroBot() {
                     break;
 
                 default:
+                    // Si ce n'est pas une commande de base, on vérifie dans commandes.js
+                    await gererCommandes(sock, msg, command, args, from);
                     break;
             }
         }
